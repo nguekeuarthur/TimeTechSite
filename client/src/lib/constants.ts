@@ -13,28 +13,48 @@ export const SERVICES = [
     id: "web",
     title: "Développement Web",
     description: "Applications web modernes, performantes et responsive",
-    icon: "code",
+    features: [
+      "Sites web sur mesure",
+      "Applications React/Vue.js", 
+      "API REST et GraphQL",
+      "Progressive Web Apps"
+    ],
     path: "/services/web",
   },
   {
     id: "mobile",
     title: "Applications Mobile",
     description: "Apps natives et cross-platform pour iOS et Android",
-    icon: "smartphone",
+    features: [
+      "Applications React Native",
+      "Applications Flutter",
+      "Applications natives iOS/Android",
+      "Intégration API et services"
+    ],
     path: "/services/mobile",
   },
   {
     id: "design",
     title: "Design Graphique",
     description: "Créations visuelles qui marquent et captivent",
-    icon: "palette",
+    features: [
+      "Identité visuelle complète",
+      "UI/UX Design moderne",
+      "Supports print et digital",
+      "Illustrations sur mesure"
+    ],
     path: "/services/design",
   },
   {
     id: "consulting",
     title: "Conseil IT",
     description: "Expertise technique et stratégique",
-    icon: "users",
+    features: [
+      "Audit technique et sécurité",
+      "Architecture système et cloud",
+      "Migration et modernisation",
+      "Formation et accompagnement"
+    ],
     path: "/services/conseil",
   },
 ] as const;

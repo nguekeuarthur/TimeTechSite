@@ -5,6 +5,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { ThemeProvider } from "@/components/theme-provider";
 import { LanguageProvider } from "@/components/language-provider";
+import { ErrorBoundary } from "@/components/error-boundary";
 import Home from "@/pages/home";
 import Services from "@/pages/services";
 import About from "@/pages/about";
@@ -39,16 +40,18 @@ function Router() {
 
 function App() {
   return (
-    <QueryClientProvider client={queryClient}>
-      <ThemeProvider defaultTheme="light" storageKey="timetotech-ui-theme">
-        <LanguageProvider defaultLanguage="fr">
-          <TooltipProvider>
-            <Toaster />
-            <Router />
-          </TooltipProvider>
-        </LanguageProvider>
-      </ThemeProvider>
-    </QueryClientProvider>
+    <ErrorBoundary>
+      <QueryClientProvider client={queryClient}>
+        <ThemeProvider defaultTheme="light" storageKey="timetotech-ui-theme">
+          <LanguageProvider defaultLanguage="fr">
+            <TooltipProvider>
+              <Toaster />
+              <Router />
+            </TooltipProvider>
+          </LanguageProvider>
+        </ThemeProvider>
+      </QueryClientProvider>
+    </ErrorBoundary>
   );
 }
 
