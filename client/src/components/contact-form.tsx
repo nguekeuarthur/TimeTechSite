@@ -29,8 +29,13 @@ export function ContactForm() {
 
   const contactMutation = useMutation({
     mutationFn: async (data: InsertContactSubmission) => {
-      const response = await apiRequest("POST", "/api/contact", data);
-      return response.json();
+      try {
+        const response = await apiRequest("POST", "/api/contact", data);
+        return response.json();
+      } catch (error) {
+        console.error("Contact form submission error:", error);
+        throw error;
+      }
     },
     onSuccess: (data) => {
       toast({
@@ -67,6 +72,7 @@ export function ContactForm() {
                     <Input 
                       {...field} 
                       className="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-accent focus:border-accent transition-colors"
+                      placeholder="Votre prénom"
                     />
                   </FormControl>
                   <FormMessage />
@@ -84,6 +90,7 @@ export function ContactForm() {
                     <Input 
                       {...field} 
                       className="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-accent focus:border-accent transition-colors"
+                      placeholder="Votre nom"
                     />
                   </FormControl>
                   <FormMessage />
@@ -103,6 +110,7 @@ export function ContactForm() {
                     type="email" 
                     {...field} 
                     className="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-accent focus:border-accent transition-colors"
+                    placeholder="votre@email.com"
                   />
                 </FormControl>
                 <FormMessage />
@@ -120,6 +128,7 @@ export function ContactForm() {
                   <Input 
                     {...field} 
                     className="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-accent focus:border-accent transition-colors"
+                    placeholder="Nom de votre entreprise"
                   />
                 </FormControl>
                 <FormMessage />

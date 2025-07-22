@@ -3,6 +3,8 @@ import { ContactForm } from "@/components/contact-form";
 import { Button } from "@/components/ui/button";
 import { useState, useEffect } from "react";
 import { useLanguage } from "@/components/language-provider";
+import { scrollToSection, formatAnimationDelay } from "@/lib/utils";
+import { ANIMATION_DELAYS } from "@/lib/constants";
 
 export default function Home() {
   const { t, language } = useLanguage();
@@ -86,12 +88,6 @@ export default function Home() {
     return () => clearInterval(slideInterval);
   }, []);
 
-  const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-    }
-  };
 
   return (
     <div className="min-h-screen bg-background">
@@ -123,6 +119,7 @@ export default function Home() {
         <button
           onClick={() => setCurrentSlide(prev => prev === 0 ? backgroundImages.length - 1 : prev - 1)}
           className="absolute left-4 top-1/2 transform -translate-y-1/2 z-20 w-12 h-12 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-white/30 transition-all duration-300"
+          aria-label="Image précédente"
         >
           <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
@@ -131,6 +128,7 @@ export default function Home() {
         <button
           onClick={() => setCurrentSlide(prev => (prev + 1) % backgroundImages.length)}
           className="absolute right-4 top-1/2 transform -translate-y-1/2 z-20 w-12 h-12 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-white/30 transition-all duration-300"
+          aria-label="Image suivante"
         >
           <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
@@ -149,10 +147,10 @@ export default function Home() {
               <br />
               <span className="text-cyan-300">{t("hero.title.end")}</span>
             </h1>
-            <p className="text-xl text-white/90 mb-12 leading-relaxed slide-up" style={{animationDelay: '0.3s'}}>
+            <p className="text-xl text-white/90 mb-12 leading-relaxed slide-up" style={{animationDelay: formatAnimationDelay(ANIMATION_DELAYS.short)}}>
               {t("hero.subtitle")}
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 slide-up" style={{animationDelay: '0.6s'}}>
+            <div className="flex flex-col sm:flex-row gap-4 slide-up" style={{animationDelay: formatAnimationDelay(ANIMATION_DELAYS.medium)}}>
               <Button 
                 onClick={() => scrollToSection("contact")}
                 className="bg-cyan-500 hover:bg-cyan-600 text-white px-8 py-4 text-lg rounded-md transition-all duration-300 shadow-lg hover:shadow-xl"
@@ -178,6 +176,7 @@ export default function Home() {
               className={`w-3 h-3 rounded-full transition-all duration-300 ${
                 index === currentSlide ? 'bg-cyan-300' : 'bg-white/50'
               }`}
+              aria-label={`Aller à l'image ${index + 1}`}
             />
           ))}
         </div>
@@ -274,7 +273,7 @@ export default function Home() {
                 </svg>
               </div>
             </div>
-            <p className="text-sm text-muted-foreground dark:text-muted-foreground mt-6 italic slide-up">
+            <p className="text-sm text-muted-foreground dark:text-muted-foreground mt-6 italic slide-up" style={{animationDelay: formatAnimationDelay(ANIMATION_DELAYS.short)}}>
               {t("home.devices.subtitle")}
             </p>
           </div>
@@ -340,14 +339,14 @@ export default function Home() {
             <h2 className="text-4xl md:text-5xl font-bold text-primary mb-8 leading-tight fade-in">
               {t("home.about.title")}
             </h2>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-8 slide-up" style={{animationDelay: '0.3s'}}>
+            <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-8 slide-up" style={{animationDelay: formatAnimationDelay(ANIMATION_DELAYS.short)}}>
               {t("home.about.desc1")}
             </p>
             <div className="space-y-4">
-              <p className="text-lg slide-up" style={{animationDelay: '0.6s'}}>
+              <p className="text-lg slide-up" style={{animationDelay: formatAnimationDelay(ANIMATION_DELAYS.medium)}}>
                 <strong className="gradient-text text-2xl">{t("home.about.desc2")}</strong>
               </p>
-              <p className="text-lg slide-up" style={{animationDelay: '0.9s'}}>
+              <p className="text-lg slide-up" style={{animationDelay: formatAnimationDelay(ANIMATION_DELAYS.long)}}>
                 <strong className="gradient-text text-xl">{t("home.about.desc3")}</strong>
               </p>
             </div>
@@ -373,13 +372,13 @@ export default function Home() {
             <Button 
               onClick={() => scrollToSection("contact-form")}
               className="gradient-bg hover:scale-105 text-white px-8 py-4 text-lg rounded-md mb-16 transition-all duration-300 glow-accent shadow-lg slide-up"
-              style={{animationDelay: '0.3s'}}
+              style={{animationDelay: formatAnimationDelay(ANIMATION_DELAYS.short)}}
             >
               {t("hero.cta")}
             </Button>
           </div>
           
-          <div id="contact-form" className="max-w-2xl mx-auto slide-up" style={{animationDelay: '0.6s'}}>
+          <div id="contact-form" className="max-w-2xl mx-auto slide-up" style={{animationDelay: formatAnimationDelay(ANIMATION_DELAYS.medium)}}>
             <ContactForm />
           </div>
         </div>
@@ -417,10 +416,10 @@ export default function Home() {
           </div>
           
           <div className="mt-12 pt-8 border-t border-gray-200 text-center">
-            <p className="text-sm text-muted-foreground italic fade-in" style={{animationDelay: '0.3s'}}>
+            <p className="text-sm text-muted-foreground italic fade-in" style={{animationDelay: formatAnimationDelay(ANIMATION_DELAYS.short)}}>
               "Plus que toute autre invention, la technologie a transformé la conscience humaine."
             </p>
-            <p className="text-xs text-muted-foreground mt-2 slide-up" style={{animationDelay: '0.6s'}}>TimeToTech</p>
+            <p className="text-xs text-muted-foreground mt-2 slide-up" style={{animationDelay: formatAnimationDelay(ANIMATION_DELAYS.medium)}}>TimeToTech</p>
           </div>
         </div>
       </footer>

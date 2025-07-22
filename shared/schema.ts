@@ -22,12 +22,30 @@ export const contactSubmissions = pgTable("contact_submissions", {
 export const insertUserSchema = createInsertSchema(users).pick({
   username: true,
   password: true,
-});
+}).refine(
+  (data) => data.username.length >= 3,
+  { message: "Le nom d'utilisateur doit contenir au moins 3 caractères" }
+).refine(
+  (data) => data.password.length >= 8,
+  { message: "Le mot de passe doit contenir au moins 8 caractères" }
+);
 
 export const insertContactSubmissionSchema = createInsertSchema(contactSubmissions).omit({
   id: true,
   createdAt: true,
-});
+}).refine(
+  (data) => data.firstName.trim().length > 0,
+  { message: "Le prénom est requis" }
+).refine(
+  (data) => data.lastName.trim().length > 0,
+  { message: "Le nom est requis" }
+).refine(
+  (data) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email),
+  { message: "Format d'email invalide" }
+).refine(
+  (data) => data.message.trim().length >= 10,
+  { message: "Le message doit contenir au moins 10 caractères" }
+);
 
 export type InsertUser = z.infer<typeof insertUserSchema>;
 export type User = typeof users.$inferSelect;

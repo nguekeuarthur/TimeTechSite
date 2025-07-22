@@ -1,4 +1,5 @@
 import { createContext, useContext, useState, ReactNode } from "react";
+import { LANGUAGE_STORAGE_KEY } from "@/lib/constants";
 
 type Language = "fr" | "en";
 
@@ -161,7 +162,7 @@ export function LanguageProvider({
   defaultLanguage = "fr",
 }: LanguageProviderProps) {
   const [language, setLanguage] = useState<Language>(
-    () => (localStorage.getItem("timetotech-language") as Language) || defaultLanguage
+    () => (localStorage.getItem(LANGUAGE_STORAGE_KEY) as Language) || defaultLanguage
   );
 
   const t = (key: string) => {
@@ -169,7 +170,7 @@ export function LanguageProvider({
   };
 
   const handleSetLanguage = (newLanguage: Language) => {
-    localStorage.setItem("timetotech-language", newLanguage);
+    localStorage.setItem(LANGUAGE_STORAGE_KEY, newLanguage);
     setLanguage(newLanguage);
   };
 
