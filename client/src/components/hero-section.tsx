@@ -19,10 +19,11 @@ export function HeroSection() {
   return (
     <BackgroundSlider 
       images={BACKGROUND_IMAGES} 
-      className="min-h-screen flex items-center"
+      className="min-h-screen flex items-center justify-center"
     >
-      <div className="max-w-6xl mx-auto px-6">
-        <div className="text-left max-w-3xl">
+      <div className="w-full max-w-7xl mx-auto px-6 py-20">
+        {/* Main Content */}
+        <div className="text-center mb-16">
           <h1 className="text-5xl md:text-7xl font-bold text-white mb-8 leading-tight fade-in">
             {t("hero.title")}{' '}
             <AnimatedText 
@@ -32,10 +33,12 @@ export function HeroSection() {
             <br />
             <span className="text-cyan-300">{t("hero.title.end")}</span>
           </h1>
-          <p className="text-xl text-white/90 mb-12 leading-relaxed slide-up" style={{animationDelay: '0.3s'}}>
+          
+          <p className="text-xl text-white/90 mb-12 leading-relaxed max-w-3xl mx-auto slide-up" style={{animationDelay: '0.3s'}}>
             {t("hero.subtitle")}
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 slide-up" style={{animationDelay: '0.6s'}}>
+          
+          <div className="flex flex-col sm:flex-row gap-4 justify-center slide-up" style={{animationDelay: '0.6s'}}>
             <Button 
               onClick={() => scrollToSection("contact")}
               className="bg-cyan-500 hover:bg-cyan-600 text-white px-8 py-4 text-lg rounded-md transition-all duration-300 shadow-lg hover:shadow-xl"
@@ -50,28 +53,24 @@ export function HeroSection() {
             </Button>
           </div>
         </div>
-      </div>
 
-      {/* Service Cards Overlay */}
-      <div className="absolute bottom-0 left-0 right-0 z-30 pb-16">
-        <div className="max-w-6xl mx-auto px-6">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <ServiceHighlight 
-              icon="⭐"
-              title="Expertise technique"
-              subtitle="À la pointe de la technologie"
-            />
-            <ServiceHighlight 
-              icon="✓"
-              title="Expérience personnalisée"
-              subtitle="Chaque projet est unique"
-            />
-            <ServiceHighlight 
-              icon="✓"
-              title="Service de qualité"
-              subtitle="Clients satisfaits à l'international"
-            />
-          </div>
+        {/* Service Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+          <ServiceHighlight 
+            icon="⭐"
+            title="Expertise technique"
+            subtitle="À la pointe de la technologie"
+          />
+          <ServiceHighlight 
+            icon="✓"
+            title="Expérience personnalisée"
+            subtitle="Chaque projet est unique"
+          />
+          <ServiceHighlight 
+            icon="✓"
+            title="Service de qualité"
+            subtitle="Clients satisfaits à l'international"
+          />
         </div>
       </div>
     </BackgroundSlider>
@@ -86,13 +85,13 @@ interface ServiceHighlightProps {
 
 function ServiceHighlight({ icon, title, subtitle }: ServiceHighlightProps) {
   return (
-    <div className="bg-[#004767]/95 backdrop-blur-sm p-6 rounded-lg border border-cyan-300/20 hover:bg-[#004767] transition-all duration-300">
-      <div className="flex items-center mb-4">
-        <div className="w-12 h-12 bg-cyan-400 rounded-lg flex items-center justify-center mr-4">
+    <div className="bg-[#004767]/90 backdrop-blur-sm p-6 rounded-lg border border-cyan-300/20 hover:bg-[#004767]/95 transition-all duration-300 slide-up">
+      <div className="flex items-start space-x-4">
+        <div className="w-12 h-12 bg-cyan-400 rounded-lg flex items-center justify-center flex-shrink-0">
           <span className="text-2xl">{icon}</span>
         </div>
         <div>
-          <h3 className="text-white font-semibold text-lg">{title}</h3>
+          <h3 className="text-white font-semibold text-lg mb-1">{title}</h3>
           <p className="text-cyan-300 text-sm">{subtitle}</p>
         </div>
       </div>

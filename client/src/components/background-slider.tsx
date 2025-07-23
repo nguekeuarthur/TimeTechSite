@@ -53,15 +53,16 @@ export function BackgroundSlider({
             }}
           />
         ))}
-        {/* Improved gradient overlay */}
-        <div className="absolute inset-0 bg-gradient-to-br from-[#004767]/80 via-[#004767]/60 to-transparent"></div>
-        <div className="absolute inset-0 bg-gradient-to-t from-[#004767]/70 via-transparent to-transparent"></div>
+        
+        {/* Gradient Overlay - Optimisé pour la lisibilité */}
+        <div className="absolute inset-0 bg-gradient-to-br from-[#004767]/85 via-[#004767]/70 to-[#004767]/60"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-[#004767]/80 via-transparent to-transparent"></div>
       </div>
 
       {/* Navigation arrows */}
       <button
         onClick={goToPrevious}
-        className="absolute left-4 top-1/2 transform -translate-y-1/2 z-20 w-12 h-12 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-white/30 transition-all duration-300"
+        className="absolute left-6 top-1/2 transform -translate-y-1/2 z-20 w-12 h-12 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-white/30 transition-all duration-300"
         aria-label="Image précédente"
       >
         <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -71,7 +72,7 @@ export function BackgroundSlider({
       
       <button
         onClick={goToNext}
-        className="absolute right-4 top-1/2 transform -translate-y-1/2 z-20 w-12 h-12 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-white/30 transition-all duration-300"
+        className="absolute right-6 top-1/2 transform -translate-y-1/2 z-20 w-12 h-12 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-white/30 transition-all duration-300"
         aria-label="Image suivante"
       >
         <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
