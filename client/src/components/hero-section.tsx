@@ -26,10 +26,12 @@ export function HeroSection() {
         <div className="text-center mb-16">
           <h1 className="text-5xl md:text-7xl font-bold text-white mb-8 leading-tight fade-in">
             {t("hero.title")}{' '}
-            <AnimatedText 
-              textOptions={TEXT_OPTIONS}
-              className="text-cyan-300 font-light italic"
-            />
+            <span className="text-cyan-300 font-light italic">
+              <AnimatedText 
+                textOptions={TEXT_OPTIONS}
+                className=""
+              />
+            </span>
             <br />
             <span className="text-cyan-300">{t("hero.title.end")}</span>
           </h1>
