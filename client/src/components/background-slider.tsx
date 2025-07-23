@@ -53,8 +53,9 @@ export function BackgroundSlider({
             }}
           />
         ))}
-        {/* Dark overlay */}
-        <div className="absolute inset-0 bg-gradient-to-r from-[#004767]/90 via-[#004767]/70 to-[#004767]/50"></div>
+        {/* Improved gradient overlay */}
+        <div className="absolute inset-0 bg-gradient-to-br from-[#004767]/80 via-[#004767]/60 to-transparent"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-[#004767]/70 via-transparent to-transparent"></div>
       </div>
 
       {/* Navigation arrows */}
