@@ -45,7 +45,7 @@ export function AnimatedText({
     }, 500);
     
     // Set up interval for changing text
-    const changeInterval = setInterval(() => {
+    const changeTextInterval = setInterval(() => {
       setCurrentText(prev => {
         const currentIndex = textOptions.indexOf(prev);
         const newText = textOptions[(currentIndex + 1) % textOptions.length];
@@ -71,7 +71,7 @@ export function AnimatedText({
     
     return () => {
       clearTimeout(initialTimeout);
-      clearInterval(changeInterval);
+      clearInterval(changeTextInterval);
     };
   }, [textOptions, t, typingSpeed, changeInterval]);
 
